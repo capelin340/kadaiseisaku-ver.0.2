@@ -1,0 +1,26 @@
+<!-- post_detail.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ post.title }}
+    <header class="masthead"
+        style="background-image: url({% static 'sign1.jpg' %})">
+      </header>
+{% endblock %}
+
+{% block contents %}
+    <div class="container">
+        <div>
+            <div class="col-mg-8">
+                <h2>{{ post.title }}</h2>
+                <p>投稿者: {{ post.user.username }} | 投稿日: {{ post.posted_at|date:"F d, Y" }}</p>
+
+                <p>{{ post.firsttext }}</p>
+
+                <a href="{% url 'kadaiapp:post' %}" class="btn btn-primary my-3">一覧に戻る</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

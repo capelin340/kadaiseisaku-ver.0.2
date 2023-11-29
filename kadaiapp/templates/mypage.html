@@ -1,0 +1,56 @@
+<!-- ベーステンプレートを適用する-->
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- ヘッダー情報のページタイトルを設定する-->
+{% block title %}Mypage{% endblock %}
+
+      {% block contents %}
+
+      <header class="masthead"
+                style="background-image: url({% static 'assets/img/home-bg1.jpg' %})">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <!-- ヘッダーの大見出し(タイトル)を設定-->
+                            <h1>Horce Race News</h1>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+      
+      <!-- タイトルテンプレートは組み込まない-->
+      
+      <!-- ユーザーの投稿件数を表示-->
+      {% if user.is_authenticated %}
+        <br>
+        <div style="text-align:center">
+          <h4>{{user.username}}さんのマイページ</h4>
+          {% if object_list.count == 0 %}
+            <p>{{user.username}}さんの投稿はありません</p>
+          {% else %}
+          <p>投稿<strong>{{object_list.count}}</strong>件</p>
+          <ul>
+            {% for post in user.blogpost_set.all %}
+                <li><a href="{% url 'kadaiapp:post_detail' post.id %}">{{ post.title }}</a></li>
+            {% endfor %}
+          </ul>
+            
+          {% endif %}
+          <a href="{% url 'kadaiapp:post' %}">投稿する</a>
+        </div>
+        <hr>
+      {% endif %}
+      
+      <!-- 投稿一覧テンプレートの組み込み-->
+      {% include "mypage_list.html" %}
+        
+      <!-- ページネーションの組み込み-->
+      {% include "pagination.html" %}
+
+      {% endblock %}
+
+      

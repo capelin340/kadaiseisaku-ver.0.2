@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ user.username }}の投稿一覧</h1>
+  {% if posts %}
+    <ul>
+      {% for post in posts %}
+        <li>
+          <strong>{{ post.title }}</strong><br>
+          {{ post.content }}<br>
+          投稿日時: {{ post.created_at }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
