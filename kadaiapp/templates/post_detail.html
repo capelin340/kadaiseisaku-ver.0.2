@@ -3,15 +3,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-    {{ post.title }}
-    <header class="masthead"
-        style="background-image: url({% static 'sign1.jpg' %})">
-      </header>
-{% endblock %}
-
 {% block contents %}
+<header class="masthead"
+                style="background-image: url({% static 'assets/img/home-bg1.jpg' %})">
+</header>
     <div class="container">
+        
         <div>
             <div class="col-mg-8">
                 <h2>{{ post.title }}</h2>
